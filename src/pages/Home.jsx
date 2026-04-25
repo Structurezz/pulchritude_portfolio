@@ -152,7 +152,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="font-display text-xl font-light italic text-gold/80 mb-4 tracking-wide"
               >
-                Trader. Customer Expert Representative, Entrepreneur.
+                Trader, Customer Expert Representative, Entrepreneur.
               </motion.p>
 
               {/* Intro */}
