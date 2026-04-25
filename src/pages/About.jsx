@@ -153,20 +153,37 @@ export default function About() {
 
             {/* Photo */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              {/* Glow */}
-              <div className="absolute inset-0 bg-rose/[0.08] rounded-3xl blur-3xl scale-90" />
-              <img
-                src={redDressImg}
-                alt="Okorie Angela Chiamaka"
-                className="relative z-10 w-full h-[580px] object-cover object-top rounded-3xl shadow-[0_30px_80px_rgba(212,132,154,0.2)]"
-              />
-              <div className="absolute -inset-2 rounded-3xl border border-rose/15 pointer-events-none z-20" />
-            </motion.div>
+  initial={{ opacity: 0, x: 40 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7, delay: 0.2 }}
+  className="relative hidden lg:flex justify-center items-center"
+>
+  <div className="relative">
+    {/* Glow */}
+    <div className="absolute -inset-6 rounded-full bg-rose/[0.12] blur-3xl" />
+
+    {/* Gradient ring */}
+    <div
+      className="absolute -inset-2 rounded-full"
+      style={{
+        background: 'linear-gradient(135deg, #D4849A, #C9A84C, #D4849A)',
+        padding: '3px',
+        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+        WebkitMaskComposite: 'xor',
+        maskComposite: 'exclude',
+      }}
+    />
+
+    {/* Image */}
+    <div className="w-[320px] h-[320px] rounded-full overflow-hidden relative z-10 border-4 border-bg">
+      <img
+        src={circleImg}
+        alt="Okorie Angela Chiamaka"
+        className="w-full h-full object-cover object-top"
+      />
+    </div>
+  </div>
+</motion.div>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg to-transparent pointer-events-none" />
