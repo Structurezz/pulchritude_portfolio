@@ -31,11 +31,13 @@ export default function TradingViewWidget({ symbol = 'FX:EURUSD', height = 500 }
     container.current.appendChild(script)
   }, [symbol, isDark])
 
+  const isFluid = height === '100%'
+
   return (
     <div
       ref={container}
-      className="tradingview-widget-container w-full rounded-2xl overflow-hidden border border-border"
-      style={{ height }}
+      className={`tradingview-widget-container w-full overflow-hidden border border-border ${isFluid ? 'h-full rounded-xl' : 'rounded-2xl'}`}
+      style={isFluid ? { height: '100%' } : { height }}
     />
   )
 }

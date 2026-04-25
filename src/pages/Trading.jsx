@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { TrendingUp, Shield, BarChart2, Award } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { TrendingUp, Shield, BarChart2, Award, Maximize2, Minimize2, X } from 'lucide-react'
 import HeroSection from '../components/HeroSection'
 import SectionLabel from '../components/SectionLabel'
 import StatCard from '../components/StatCard'
@@ -266,23 +266,52 @@ const SYMBOLS = [
 
 function SymbolSelector() {
   const [active, setActive] = useState('FX:EURUSD')
+  const [expanded, setExpanded] = useState(false)
+
+  // Lock body scroll when fullscreen
+  useEffect(() => {
+    document.body.style.overflow = expanded ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [expanded])
+
+  // Close on Escape
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setExpanded(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  const controls = (
+    <div className="flex flex-wrap items-center gap-2">
+      {SYMBOLS.map(s => (
+        <button
+          key={s.value}
+          onClick={() => setActive(s.value)}
+          className={`font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-200 ${
+            active === s.value
+              ? 'bg-gold text-bg border-gold'
+              : 'border-border text-muted hover:border-gold/40 hover:text-gold'
+          }`}
+        >
+          {s.label}
+        </button>
+      ))}
+    </div>
+  )
+
   return (
     <>
-      <div className="flex flex-wrap gap-2 mb-5">
-        {SYMBOLS.map(s => (
-          <button
-            key={s.value}
-            onClick={() => setActive(s.value)}
-            className={`font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-200 ${
-              active === s.value
-                ? 'bg-gold text-bg border-gold'
-                : 'border-border text-muted hover:border-gold/40 hover:text-gold'
-            }`}
-          >
-            {s.label}
-          </button>
-        ))}
+      {/* ── INLINE VIEW ── */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+        {controls}
+        <button
+          onClick={() => setExpanded(true)}
+          className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-bg transition-all duration-200"
+        >
+          <Maximize2 size={13} /> Expand
+        </button>
       </div>
+
       <motion.div
         key={active}
         initial={{ opacity: 0, y: 10 }}
@@ -291,6 +320,38 @@ function SymbolSelector() {
       >
         <TradingViewWidget symbol={active} height={520} />
       </motion.div>
+
+      {/* ── FULLSCREEN OVERLAY ── */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[70] bg-bg/95 backdrop-blur-xl flex flex-col"
+          >
+            {/* Toolbar */}
+            <div className="flex items-center justify-between px-4 md:px-8 py-3 border-b border-border shrink-0">
+              <div className="flex flex-wrap items-center gap-2">
+                {controls}
+              </div>
+              <button
+                onClick={() => setExpanded(false)}
+                className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border border-border text-muted hover:border-rose/40 hover:text-rose transition-all duration-200 ml-3"
+              >
+                <Minimize2 size={13} /> <span className="hidden sm:inline">Minimize</span>
+                <X size={13} className="sm:hidden" />
+              </button>
+            </div>
+
+            {/* Chart fills remaining height */}
+            <div className="flex-1 p-3 md:p-5">
+              <TradingViewWidget symbol={active} height="100%" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
