@@ -43,7 +43,9 @@ function AppInner() {
       <div className="relative z-10">
         <ScrollToTop />
         <Navbar />
-        <AnimatedRoutes />
+        <main className="pb-16 lg:pb-0">
+          <AnimatedRoutes />
+        </main>
         <Footer />
       </div>
     </div>

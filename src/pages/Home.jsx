@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   TrendingUp, Headphones, ChefHat, Scissors, Briefcase, HeadphonesIcon,
-  ArrowRight, MapPin, Mail, Phone
+  ArrowRight, ArrowUpRight, MapPin, Mail, Phone, ChevronDown,
 } from 'lucide-react'
 import PortfolioCard from '../components/PortfolioCard'
 import SectionLabel from '../components/SectionLabel'
@@ -61,138 +61,133 @@ const portfolioCards = [
   {
     to: '/hair',
     icon: Scissors,
-    title: 'Hair Stylist',
-    description: 'Beauty professional skilled in natural hair, braids, weaves, locs, and precision styling.',
+    title: 'Hair & Makeup',
+    description: 'Beauty professional skilled in natural hair, braids, weaves, locs, and makeup artistry.',
     accent: '#E8A8BE',
   },
   {
     to: '/business',
     icon: Briefcase,
-    title: 'Business & Entrepreneurship',
+    title: 'Business',
     description: 'Brand builder and entrepreneur leveraging cross-industry expertise into cohesive business value.',
     accent: '#C9A84C',
   },
 ]
 
+const stats = [
+  { value: '3+', label: 'Prop Firms Funded' },
+  { value: '6+', label: 'Markets Traded' },
+  { value: '5+', label: 'Years Experience' },
+  { value: '6+', label: 'Industries' },
+]
+
 export default function Home() {
   return (
     <motion.div {...pageTransition}>
-      {/* HERO */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20">
-        {/* Soft organic background */}
+
+      {/* ══════════════════════════════════════════
+          MOBILE HERO — full viewport, image fills screen
+      ══════════════════════════════════════════ */}
+      <section className="lg:hidden relative h-[100svh] overflow-hidden">
+        {/* Full-bleed portrait */}
+        <img
+          src={heroImg}
+          alt="Okorie Angela Chiamaka"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+
+        {/* Layered gradient: dark at bottom for text legibility, subtle at top */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-transparent" />
+
+        {/* TOP STATUS BAR */}
+        <div className="absolute top-14 left-0 right-0 px-5 flex items-center gap-2.5">
+          <div className="w-2 h-2 rounded-full bg-rose animate-pulse" />
+          <span className="font-mono text-[10px] tracking-widest uppercase text-rose/90">
+            Available for Opportunities
+          </span>
+          <div className="ml-auto font-mono text-[10px] tracking-widest uppercase text-muted">
+            Lagos, NG
+          </div>
+        </div>
+
+        {/* BOTTOM CONTENT */}
+        <div className="absolute bottom-0 left-0 right-0 px-5 pb-8">
+          {/* Script name */}
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="block font-script text-4xl text-rose/70 leading-none mb-1"
+          >
+            Okorie
+          </motion.span>
+
+          {/* Display name */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-display font-light leading-[0.92] mb-3"
+          >
+            <span className="block text-[3.8rem] text-gradient-rose">Angela</span>
+            <span className="block text-[3.8rem] text-off-white">Chiamaka</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="font-display text-base font-light italic text-gold/80 mb-6 tracking-wide"
+          >
+            Trader, Customer Expert Representative, Entrepreneur.
+          </motion.p>
+
+          {/* CTA buttons — full width, side by side */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="flex gap-3"
+          >
+            <Link
+              to="/about"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-rose text-bg font-mono text-[10px] tracking-widest uppercase rounded-full transition-all duration-300 active:scale-95"
+            >
+              About Me <ArrowRight size={12} />
+            </Link>
+            <Link
+              to="/contact"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-off-white/10 backdrop-blur-sm border border-off-white/20 text-off-white font-mono text-[10px] tracking-widest uppercase rounded-full transition-all duration-300 active:scale-95"
+            >
+              Work With Me
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+          className="absolute bottom-36 right-5"
+        >
+          <ChevronDown size={16} className="text-off-white/30" />
+        </motion.div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          DESKTOP HERO — two-column layout
+      ══════════════════════════════════════════ */}
+      <section className="hidden lg:block relative min-h-screen overflow-hidden pt-20">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full bg-rose/[0.07] blur-[100px]" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gold/[0.05] blur-[80px]" />
-          <div className="absolute top-0 left-1/3 w-[200px] h-[200px] rounded-full bg-rose/[0.04] blur-[60px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-5 md:px-12 w-full py-12 md:py-20 relative z-10">
-
-          {/* ── MOBILE LAYOUT ── */}
-          <div className="flex flex-col lg:hidden">
-
-            {/* Mobile portrait — top, full-width card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative mx-auto mb-8 w-full max-w-sm"
-            >
-              {/* Glow */}
-              <div className="absolute -inset-4 rounded-[2rem] bg-rose/[0.12] blur-2xl pointer-events-none" />
-              {/* Image card */}
-              <div className="relative rounded-[2rem] overflow-hidden border border-rose/20 shadow-[0_20px_60px_rgba(212,132,154,0.25)]">
-                <img
-                  src={heroImg}
-                  alt="Okorie Angela Chiamaka"
-                  className="w-full h-[380px] object-cover object-top"
-                />
-                {/* Gradient overlay at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/10 to-transparent" />
-                {/* Floating name over image */}
-                <div className="absolute bottom-0 left-0 right-0 px-6 pb-6">
-                  <span className="block font-script text-3xl text-rose/80 leading-none mb-1">Okorie</span>
-                  <h1 className="font-display font-light leading-[0.95]">
-                    <span className="block text-5xl text-gradient-rose">Angela</span>
-                    <span className="block text-5xl text-off-white">Chiamaka</span>
-                  </h1>
-                </div>
-              </div>
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-4 right-4 bg-card border border-border rounded-2xl px-4 py-2.5 shadow-xl z-10"
-              >
-                <p className="font-script text-base text-gradient-rose leading-none">Lagos, Nigeria</p>
-                <p className="font-mono text-[9px] text-muted tracking-widest uppercase mt-0.5">Available Now</p>
-              </motion.div>
-            </motion.div>
-
-            {/* Mobile text content */}
-            <div className="mt-6">
-              {/* Available label */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex items-center gap-3 mb-5"
-              >
-                <div className="w-8 h-px bg-gradient-to-r from-rose to-transparent" />
-                <div className="w-2 h-2 rounded-full bg-rose animate-pulse" />
-                <span className="font-mono text-[10px] tracking-widest uppercase text-muted">
-                  Available for Opportunities
-                </span>
-              </motion.div>
-
-              {/* Subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="font-display text-xl font-light italic text-gold/80 mb-4 tracking-wide"
-              >
-                Trader, Customer Expert Representative, Entrepreneur.
-              </motion.p>
-
-              {/* Intro */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="font-body text-sm text-muted leading-relaxed mb-8"
-              >
-                A multi-talented Nigerian professional based in Lagos — navigating global financial markets,
-                crafting soulful music, serving culinary artistry, and building businesses that last.
-              </motion.p>
-
-              {/* CTAs — full width on mobile */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="flex flex-col gap-3"
-              >
-                <Link
-                  to="/about"
-                  className="flex items-center justify-center gap-3 px-8 py-4 bg-rose text-bg font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose-light"
-                >
-                  Discover More <ArrowRight size={14} />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="flex items-center justify-center gap-3 px-8 py-4 border border-rose/40 text-rose font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose hover:text-bg hover:border-rose"
-                >
-                  Work With Me
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* ── DESKTOP LAYOUT (unchanged) ── */}
-          <div className="hidden lg:grid grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-12 w-full py-20 relative z-10">
+          <div className="grid grid-cols-2 gap-12 items-center">
             <div>
-              {/* Label */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -205,7 +200,6 @@ export default function Home() {
                 <span className="font-mono text-xs tracking-widest uppercase text-muted">Available for Opportunities</span>
               </motion.div>
 
-              {/* Name */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -260,7 +254,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Desktop portrait */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -286,37 +279,118 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-
         </div>
 
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-bg to-transparent pointer-events-none" />
       </section>
 
       {/* FX TICKER */}
-      <div className="relative py-4 bg-surface border-y border-border overflow-hidden">
+      <div className="relative py-3 bg-surface border-y border-border overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...fxTicker, ...fxTicker].map((item, i) => (
-            <span key={i} className="inline-flex items-center gap-3 mx-8">
-              <span className="font-mono text-xs tracking-widest text-rose uppercase">
-                {item.pair}
-              </span>
-              <span className="font-mono text-xs text-off-white/70">{item.price}</span>
-              <span
-                className={`font-mono text-xs ${
-                  item.change.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'
-                }`}
-              >
+            <span key={i} className="inline-flex items-center gap-3 mx-6 md:mx-8">
+              <span className="font-mono text-[10px] md:text-xs tracking-widest text-rose uppercase">{item.pair}</span>
+              <span className="font-mono text-[10px] md:text-xs text-off-white/70">{item.price}</span>
+              <span className={`font-mono text-[10px] md:text-xs ${item.change.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {item.change}
               </span>
-              <span className="text-border mx-2">·</span>
+              <span className="text-border mx-1">·</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* PORTFOLIO SECTIONS */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32">
+      {/* ══════════════════════════════════════════
+          MOBILE STATS STRIP
+      ══════════════════════════════════════════ */}
+      <div className="lg:hidden px-5 pt-8 pb-2">
+        <div className="grid grid-cols-4 gap-2">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="bg-card border border-border rounded-2xl p-3 text-center"
+            >
+              <div className="font-display text-2xl font-light text-gradient-rose leading-none mb-1">{s.value}</div>
+              <div className="font-mono text-[7.5px] tracking-wide uppercase text-muted leading-tight">{s.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════
+          MOBILE PORTFOLIO — horizontal snap-scroll carousel
+      ══════════════════════════════════════════ */}
+      <section className="lg:hidden pt-10 pb-6">
+        <div className="px-5 mb-5">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-px bg-gradient-to-r from-rose to-transparent" />
+            <span className="font-mono text-[9px] tracking-widest uppercase text-rose">My World</span>
+          </div>
+          <h2 className="font-display text-3xl font-light text-off-white">A Universe of Talent</h2>
+        </div>
+
+        {/* Snap-scroll row — peek of next card on right edge */}
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-5 no-scrollbar">
+          {portfolioCards.map((card, i) => (
+            <motion.div
+              key={card.to}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="snap-start flex-shrink-0 w-[72vw] max-w-[280px]"
+            >
+              <Link
+                to={card.to}
+                className="block h-full bg-card border border-border rounded-3xl p-6 active:scale-[0.97] transition-transform duration-150 relative overflow-hidden"
+              >
+                {/* Accent glow */}
+                <div
+                  className="absolute -top-8 -right-8 w-24 h-24 rounded-full opacity-20 blur-2xl pointer-events-none"
+                  style={{ background: card.accent }}
+                />
+                {/* Icon */}
+                <div
+                  className="w-11 h-11 flex items-center justify-center rounded-2xl mb-4 border border-border"
+                  style={{ color: card.accent, background: card.accent + '18' }}
+                >
+                  <card.icon size={20} />
+                </div>
+                {/* Title */}
+                <h3 className="font-display text-lg font-medium text-off-white mb-2 leading-tight">
+                  {card.title}
+                </h3>
+                {/* Description */}
+                <p className="font-body text-xs text-muted leading-relaxed mb-4">
+                  {card.description}
+                </p>
+                {/* Arrow */}
+                <div className="flex items-center gap-1.5 font-mono text-[9px] tracking-widest uppercase" style={{ color: card.accent }}>
+                  <span>Explore</span>
+                  <ArrowUpRight size={12} />
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-1.5 mt-2">
+          {portfolioCards.map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full transition-all duration-300 ${i === 0 ? 'w-4 h-1.5 bg-rose' : 'w-1.5 h-1.5 bg-border'}`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* DESKTOP PORTFOLIO GRID */}
+      <section className="hidden lg:block max-w-7xl mx-auto px-12 py-24 md:py-32">
         <SectionLabel>Expertise & Portfolio</SectionLabel>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -336,7 +410,6 @@ export default function Home() {
         >
           Each domain is a full-time commitment — explore Angela's world across six distinct spheres of excellence.
         </motion.p>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {portfolioCards.map((card, i) => (
             <PortfolioCard key={card.to} {...card} index={i} />
@@ -344,14 +417,68 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT SNAPSHOT */}
+      {/* ══════════════════════════════════════════
+          ABOUT SNAPSHOT — mobile app style
+      ══════════════════════════════════════════ */}
       <section className="bg-surface border-y border-border relative overflow-hidden">
-        {/* Soft decorative blobs */}
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-rose/[0.05] blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full bg-gold/[0.04] blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-          {/* Left */}
+        {/* MOBILE about */}
+        <div className="lg:hidden relative z-10">
+          {/* Full-width photo */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <img
+              src={portraitImg}
+              alt="Angela Chiamaka"
+              className="w-full h-64 object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent" />
+          </motion.div>
+
+          {/* Text content */}
+          <div className="px-5 py-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-6 h-px bg-gradient-to-r from-rose to-transparent" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-rose">About Angela</span>
+            </div>
+            <h2 className="font-display text-3xl font-light text-off-white mb-4 leading-tight">
+              One Woman.{' '}
+              <span className="text-gradient-rose italic">Infinite Dimensions.</span>
+            </h2>
+            <p className="font-body text-sm text-muted leading-relaxed mb-6">
+              Okorie Angela Chiamaka is a B.Sc. graduate of Soil Science from Abia State University who
+              transformed her analytical mindset into a multi-industry career spanning global finance,
+              music, culinary arts, beauty, customer experience, and entrepreneurship.
+            </p>
+
+            {/* Stats 2x2 */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {stats.map((s, i) => (
+                <div key={s.label} className="bg-card border border-border rounded-2xl p-4">
+                  <div className="font-display text-3xl font-light text-gradient-rose mb-1">{s.value}</div>
+                  <div className="font-mono text-[9px] tracking-widest uppercase text-muted">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-rose border-b border-rose/30 pb-1"
+            >
+              Read Full Story <ArrowRight size={10} />
+            </Link>
+          </div>
+        </div>
+
+        {/* DESKTOP about */}
+        <div className="hidden lg:grid max-w-7xl mx-auto px-12 py-24 grid-cols-2 gap-16 items-center relative z-10">
           <div>
             <SectionLabel>About Angela</SectionLabel>
             <motion.h2
@@ -394,54 +521,94 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Right — photo + stats */}
           <div className="space-y-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative mb-2"
-          >
-            <img
-              src={portraitImg}
-              alt="Angela Chiamaka"
-              className="w-full h-56 object-cover object-top rounded-2xl shadow-[0_20px_50px_rgba(212,132,154,0.15)]"
-            />
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
-          </motion.div>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { value: '3+', label: 'Prop Firms Funded' },
-              { value: '6+', label: 'Markets Traded' },
-              { value: '5+', label: 'Years Experience' },
-              { value: '2', label: 'Certifications' },
-            ].map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-6 hover:border-rose/30 hover:shadow-[0_0_30px_rgba(212,132,154,0.08)] transition-all duration-300 group"
-              >
-                <div className="font-display text-4xl font-light text-gradient-rose mb-2">{s.value}</div>
-                <div className="font-mono text-xs tracking-widest uppercase text-muted group-hover:text-rose/70 transition-colors">
-                  {s.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative mb-2"
+            >
+              <img
+                src={portraitImg}
+                alt="Angela Chiamaka"
+                className="w-full h-56 object-cover object-top rounded-2xl shadow-[0_20px_50px_rgba(212,132,154,0.15)]"
+              />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
+            </motion.div>
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="bg-card border border-border rounded-2xl p-6 hover:border-rose/30 hover:shadow-[0_0_30px_rgba(212,132,154,0.08)] transition-all duration-300 group"
+                >
+                  <div className="font-display text-4xl font-light text-gradient-rose mb-2">{s.value}</div>
+                  <div className="font-mono text-xs tracking-widest uppercase text-muted group-hover:text-rose/70 transition-colors">
+                    {s.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CONTACT STRIP */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-24">
+      {/* ══════════════════════════════════════════
+          CONTACT — mobile app card style
+      ══════════════════════════════════════════ */}
+
+      {/* MOBILE contact */}
+      <section className="lg:hidden px-5 py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="bg-card border border-border rounded-3xl p-6 relative overflow-hidden"
+        >
+          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-rose/[0.08] blur-3xl pointer-events-none" />
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-2 h-2 rounded-full bg-rose animate-pulse" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-rose">Get In Touch</span>
+            </div>
+            <h2 className="font-display text-2xl font-light text-off-white mb-4 leading-tight">
+              Ready to Collaborate?
+            </h2>
+            <div className="flex flex-col gap-2.5 mb-6">
+              {[
+                { icon: Phone, text: '+234 813 820 4756', href: 'tel:+2348138204756' },
+                { icon: Mail, text: 'angieokorie@gmail.com', href: 'mailto:angieokorie@gmail.com' },
+                { icon: MapPin, text: 'Lagos, Nigeria', href: '#' },
+              ].map(({ icon: Icon, text, href }) => (
+                <a
+                  key={text}
+                  href={href}
+                  className="flex items-center gap-3 py-2.5 px-4 bg-surface rounded-xl border border-border font-mono text-xs text-muted active:scale-[0.98] transition-transform"
+                >
+                  <Icon size={14} className="text-rose/60 flex-shrink-0" />
+                  <span className="truncate">{text}</span>
+                </a>
+              ))}
+            </div>
+            <Link
+              to="/contact"
+              className="flex items-center justify-center gap-2 w-full py-4 bg-rose text-bg font-mono text-[10px] tracking-widest uppercase rounded-full active:scale-[0.97] transition-transform"
+            >
+              Send a Message <ArrowRight size={12} />
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* DESKTOP contact */}
+      <section className="hidden lg:block max-w-7xl mx-auto px-12 py-24">
         <div className="border border-border rounded-3xl p-10 md:p-16 relative overflow-hidden">
-          {/* Background bloom */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,#D4849A09_0%,transparent_70%)] pointer-events-none rounded-3xl" />
-          {/* Corner blobs */}
           <div className="absolute top-0 left-0 w-48 h-48 rounded-full bg-rose/[0.06] blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-gold/[0.04] blur-3xl pointer-events-none" />
 
@@ -457,11 +624,7 @@ export default function Home() {
                   { icon: Mail, text: 'angieokorie@gmail.com', href: 'mailto:angieokorie@gmail.com' },
                   { icon: MapPin, text: 'Lagos, Nigeria', href: '#' },
                 ].map(({ icon: Icon, text, href }) => (
-                  <a
-                    key={text}
-                    href={href}
-                    className="flex items-center gap-2 font-mono text-xs text-muted hover:text-rose transition-colors"
-                  >
+                  <a key={text} href={href} className="flex items-center gap-2 font-mono text-xs text-muted hover:text-rose transition-colors">
                     <Icon size={13} className="text-rose/60" />
                     {text}
                   </a>
@@ -477,6 +640,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </motion.div>
   )
 }

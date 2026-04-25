@@ -2,28 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar but keep scroll behaviour */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* ─────────────────────────────────────────────────
    THEME VARIABLES
    Light = :root  |  Dark = .dark
 ───────────────────────────────────────────────── */
 @layer base {
   :root {
-    /* Light theme */
-    --color-bg:         251 245 247;   /* #FBF5F7 */
-    --color-surface:    242 234 240;   /* #F2EAF0 */
+    /* Light theme — clean white base, rose accents only */
+    --color-bg:         252 252 252;   /* #FCFCFC – near white */
+    --color-surface:    246 246 248;   /* #F6F6F8 – very light neutral */
     --color-card:       255 255 255;   /* #FFFFFF */
-    --color-border:     232 208 218;   /* #E8D0DA */
+    --color-border:     226 220 228;   /* #E2DCE4 – soft neutral */
     --color-rose:       201 107 133;   /* #C96B85 */
     --color-rose-light: 224 143 170;   /* #E08FAA */
     --color-rose-dark:  168  78 107;   /* #A84E6B */
     --color-blush:      245 198 208;   /* #F5C6D0 */
     --color-gold:       184 146  42;   /* #B8922A */
     --color-gold-light: 212 168  64;   /* #D4A840 */
-    --color-text:        26  15  30;   /* #1A0F1E – dark text on light bg */
-    --color-muted:      138 100 120;   /* #8A6478 */
+    --color-text:        28  22  34;   /* #1C1622 – dark text on light bg */
+    --color-muted:      120 110 130;   /* #786E82 */
 
     /* Legacy vars for inline styles */
-    --bg:     #FBF5F7;
+    --bg:     #FCFCFC;
     --rose:   #C96B85;
     --gold:   #B8922A;
   }
@@ -155,24 +159,9 @@
    LIGHT MODE EXCLUSIVE — cool features
 ───────────────────────────────────────────────── */
 
-/* Aurora background on body */
+/* Subtle neutral background for light mode — no pink */
 html:not(.dark) body {
-  background: linear-gradient(
-    135deg,
-    #FBF5F7 0%,
-    #F5EAF0 25%,
-    #FEF6F4 50%,
-    #F2EBF5 75%,
-    #FBF5F7 100%
-  );
-  background-size: 400% 400%;
-  animation: aurora 14s ease infinite;
-}
-
-@keyframes aurora {
-  0%,100% { background-position: 0%   50%; }
-  33%      { background-position: 100% 50%; }
-  66%      { background-position: 50%  0%;  }
+  background: #FCFCFC;
 }
 
 /* Glass cards in light mode */
