@@ -182,6 +182,13 @@ export default function About() {
         className="w-full h-full object-cover object-top"
       />
     </div>
+    <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-card border border-border rounded-full px-4 py-1.5 whitespace-nowrap shadow-lg z-20"
+                  >
+                    <span className="font-script text-base text-gradient-rose">Lagos, Nigeria</span>
+                  </motion.div>
   </div>
 </motion.div>
           </div>
