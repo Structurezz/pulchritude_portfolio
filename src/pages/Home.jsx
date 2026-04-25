@@ -8,6 +8,7 @@ import PortfolioCard from '../components/PortfolioCard'
 import SectionLabel from '../components/SectionLabel'
 import heroImg from '../assets/image2.jpeg'
 import portraitImg from '../assets/WhatsApp Image 2026-04-25 at 14.16.35.jpeg'
+import aboutCircleImg from '../assets/image6.jpeg'
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -426,24 +427,49 @@ export default function Home() {
 
         {/* MOBILE about */}
         <div className="lg:hidden relative z-10">
-          {/* Full-width photo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <img
-              src={portraitImg}
-              alt="Angela Chiamaka"
-              className="w-full h-64 object-cover object-top"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent" />
-          </motion.div>
-
           {/* Text content */}
           <div className="px-5 py-8">
+
+            {/* Circle portrait */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex justify-center mb-8"
+            >
+              <div className="relative">
+                {/* Outer glow */}
+                <div className="absolute -inset-4 rounded-full bg-rose/[0.12] blur-2xl pointer-events-none" />
+                {/* Gradient border ring */}
+                <div
+                  className="absolute -inset-1.5 rounded-full"
+                  style={{
+                    background: 'linear-gradient(135deg, #D4849A, #C9A84C, #D4849A)',
+                    padding: '3px',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                  }}
+                />
+                {/* Circle image */}
+                <div className="w-44 h-44 rounded-full overflow-hidden relative z-10 border-4 border-bg">
+                  <img
+                    src={aboutCircleImg}
+                    alt="Angela Chiamaka"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                {/* Floating label */}
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-card border border-border rounded-full px-4 py-1.5 whitespace-nowrap shadow-lg z-20"
+                >
+                  <span className="font-script text-base text-gradient-rose">Multifaceted</span>
+                </motion.div>
+              </div>
+            </motion.div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-6 h-px bg-gradient-to-r from-rose to-transparent" />
               <span className="font-mono text-[9px] tracking-widest uppercase text-rose">About Angela</span>
