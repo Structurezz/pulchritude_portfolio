@@ -547,22 +547,48 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="space-y-4">
+          <div className="flex flex-col items-center gap-10">
+            {/* Circle portrait */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative mb-2"
+              transition={{ duration: 0.7 }}
+              className="relative"
             >
-              <img
-                src={portraitImg}
-                alt="Angela Chiamaka"
-                className="w-full h-56 object-cover object-top rounded-2xl shadow-[0_20px_50px_rgba(212,132,154,0.15)]"
+              {/* Outer glow */}
+              <div className="absolute -inset-6 rounded-full bg-rose/[0.10] blur-3xl pointer-events-none" />
+              {/* Gradient border ring */}
+              <div
+                className="absolute -inset-1.5 rounded-full"
+                style={{
+                  background: 'linear-gradient(135deg, #D4849A, #C9A84C, #D4849A)',
+                  padding: '3px',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                }}
               />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
+              {/* Circle image */}
+              <div className="w-64 h-64 xl:w-80 xl:h-80 rounded-full overflow-hidden relative z-10 border-4 border-bg">
+                <img
+                  src={aboutCircleImg}
+                  alt="Angela Chiamaka"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              {/* Floating badge */}
+              <motion.div
+                animate={{ y: [0, -7, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-card border border-border rounded-full px-5 py-2 whitespace-nowrap shadow-xl z-20"
+              >
+                <span className="font-script text-xl text-gradient-rose">Multifaceted</span>
+              </motion.div>
             </motion.div>
-            <div className="grid grid-cols-2 gap-4">
+
+            {/* Stats 2×2 below circle */}
+            <div className="grid grid-cols-2 gap-4 w-full">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.label}
