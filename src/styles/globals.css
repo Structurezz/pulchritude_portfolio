@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────
+   THEME VARIABLES
+   Light = :root  |  Dark = .dark
+───────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Light theme */
+    --color-bg:         251 245 247;   /* #FBF5F7 */
+    --color-surface:    242 234 240;   /* #F2EAF0 */
+    --color-card:       255 255 255;   /* #FFFFFF */
+    --color-border:     232 208 218;   /* #E8D0DA */
+    --color-rose:       201 107 133;   /* #C96B85 */
+    --color-rose-light: 224 143 170;   /* #E08FAA */
+    --color-rose-dark:  168  78 107;   /* #A84E6B */
+    --color-blush:      245 198 208;   /* #F5C6D0 */
+    --color-gold:       184 146  42;   /* #B8922A */
+    --color-gold-light: 212 168  64;   /* #D4A840 */
+    --color-text:        26  15  30;   /* #1A0F1E – dark text on light bg */
+    --color-muted:      138 100 120;   /* #8A6478 */
+
+    /* Legacy vars for inline styles */
+    --bg:     #FBF5F7;
+    --rose:   #C96B85;
+    --gold:   #B8922A;
+  }
+
+  .dark {
+    /* Dark theme */
+    --color-bg:          15  10  20;   /* #0F0A14 */
+    --color-surface:     22  14  28;   /* #160E1C */
+    --color-card:        29  18  38;   /* #1D1226 */
+    --color-border:      50  23  64;   /* #321740 */
+    --color-rose:       212 132 154;   /* #D4849A */
+    --color-rose-light: 232 168 190;   /* #E8A8BE */
+    --color-rose-dark:  184 102 138;   /* #B8668A */
+    --color-blush:      242 196 206;   /* #F2C4CE */
+    --color-gold:       201 168  76;   /* #C9A84C */
+    --color-gold-light: 232 201 106;   /* #E8C96A */
+    --color-text:       251 240 243;   /* #FBF0F3 */
+    --color-muted:      150 127 165;   /* #967FA5 */
+
+    --bg:   #0F0A14;
+    --rose: #D4849A;
+    --gold: #C9A84C;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-text));
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-rose));
+    color: #fff;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar        { width: 5px; }
+  ::-webkit-scrollbar-track  { background: rgb(var(--color-bg)); }
+  ::-webkit-scrollbar-thumb  {
+    background: linear-gradient(180deg, rgb(var(--color-rose)), rgb(var(--color-gold)));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-rose-light)); }
+}
+
+/* ─────────────────────────────────────────────────
+   COMPONENTS
+───────────────────────────────────────────────── */
+@layer components {
+  .section-padding { @apply px-6 md:px-12 lg:px-20 py-20 md:py-28; }
+  .container-max   { @apply max-w-7xl mx-auto; }
+
+  .card-base {
+    @apply bg-card border border-border rounded-2xl p-6 transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:border-rose/40 hover:shadow-[0_0_40px_rgba(212,132,154,0.12)];
+  }
+
+  .btn-rose {
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-rose text-white font-body font-semibold
+           text-sm tracking-widest uppercase rounded-full transition-all duration-300
+           hover:bg-rose-light hover:shadow-[0_0_24px_rgba(212,132,154,0.45)];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-8 py-3 border border-rose/60 text-rose font-body
+           text-sm tracking-widest uppercase rounded-full transition-all duration-300
+           hover:bg-rose hover:text-white;
+  }
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-gold text-white font-body font-semibold
+           text-sm tracking-widest uppercase rounded-full transition-all duration-300
+           hover:bg-gold-light hover:shadow-[0_0_20px_rgba(201,168,76,0.4)];
+  }
+
+  .label-mono { @apply font-mono text-xs tracking-widest uppercase text-rose; }
+  .rose-rule  { @apply w-16 h-px bg-rose mb-6; }
+}
+
+/* ─────────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────────── */
+@layer utilities {
+  /* Gradient text — auto-adapts to theme via CSS vars */
+  .text-gradient-rose {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-rose))        0%,
+      rgb(var(--color-rose-light))  40%,
+      rgb(var(--color-blush))       65%,
+      rgb(var(--color-rose))       100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-gold))        0%,
+      rgb(var(--color-gold-light)) 50%,
+      rgb(var(--color-gold))       100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-rose { box-shadow: 0 0 40px rgba(212, 132, 154, 0.18); }
+  .glow-gold { box-shadow: 0 0 40px rgba(201, 168,  76, 0.15); }
+}
+
+/* ─────────────────────────────────────────────────
+   LIGHT MODE EXCLUSIVE — cool features
+───────────────────────────────────────────────── */
+
+/* Aurora background on body */
+html:not(.dark) body {
+  background: linear-gradient(
+    135deg,
+    #FBF5F7 0%,
+    #F5EAF0 25%,
+    #FEF6F4 50%,
+    #F2EBF5 75%,
+    #FBF5F7 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora 14s ease infinite;
+}
+
+@keyframes aurora {
+  0%,100% { background-position: 0%   50%; }
+  33%      { background-position: 100% 50%; }
+  66%      { background-position: 50%  0%;  }
+}
+
+/* Glass cards in light mode */
+html:not(.dark) .card-base {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(201, 107, 133, 0.18);
+  box-shadow: 0 4px 24px rgba(201, 107, 133, 0.08), 0 1px 4px rgba(0,0,0,0.04);
+}
+
+html:not(.dark) .card-hover:hover {
+  box-shadow: 0 12px 40px rgba(201, 107, 133, 0.18), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Frosted glass surface panels */
+html:not(.dark) .bg-surface {
+  background: rgba(242, 234, 240, 0.8) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Sparkle decorations — light mode only */
+html:not(.dark) body::before,
+html:not(.dark) body::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+html:not(.dark) body::before {
+  width: 600px; height: 600px;
+  top: -10%;    right: -10%;
+  background: radial-gradient(circle, rgba(201,107,133,0.15) 0%, transparent 70%);
+  animation: float 10s ease-in-out infinite;
+}
+html:not(.dark) body::after {
+  width: 400px; height: 400px;
+  bottom: -5%;  left: -5%;
+  background: radial-gradient(circle, rgba(184,146,42,0.12) 0%, transparent 70%);
+  animation: float 13s ease-in-out infinite reverse;
+}
+
+/* Floating sparkle elements (injected via React) */
+.sparkle-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,107,133,0.7) 0%, transparent 70%);
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+/* Shimmer border on section labels in light mode */
+html:not(.dark) .label-mono {
+  background: linear-gradient(90deg, rgb(var(--color-rose)), rgb(var(--color-gold)), rgb(var(--color-rose)));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-label 3s linear infinite;
+}
+
+@keyframes shimmer-label {
+  0%   { background-position: 0%   0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* Gradient border on featured cards in light mode */
+html:not(.dark) .portfolio-card-featured {
+  position: relative;
+}
+html:not(.dark) .portfolio-card-featured::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgb(var(--color-rose)), rgb(var(--color-gold)), rgb(var(--color-rose)));
+  background-size: 200% 200%;
+  animation: gradient-border 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@keyframes gradient-border {
+  0%,100% { background-position: 0%   50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ─────────────────────────────────────────────────
+   DARK MODE EXCLUSIVE — enhanced features
+───────────────────────────────────────────────── */
+
+/* Constellation star dots on dark body */
+html.dark body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 20%  15%, rgba(212,132,154,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80%  25%, rgba(201,168,76,0.4)  0%, transparent 100%),
+    radial-gradient(1px 1px at 45%  60%, rgba(212,132,154,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65%  80%, rgba(201,168,76,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10%  70%, rgba(212,132,154,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90%  55%, rgba(212,132,154,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35%  90%, rgba(201,168,76,0.3)  0%, transparent 100%),
+    radial-gradient(1px 1px at 75%   5%, rgba(212,132,154,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55%  40%, rgba(201,168,76,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25%  48%, rgba(212,132,154,0.2) 0%, transparent 100%);
+  opacity: 0.8;
+}
+
+/* Neon glow on active nav links in dark */
+html.dark .dark-nav-active {
+  text-shadow: 0 0 12px rgba(212, 132, 154, 0.8);
+}
+
+/* ─────────────────────────────────────────────────
+   SHARED FLOAT KEYFRAME
+───────────────────────────────────────────────── */
+@keyframes float {
+  0%,100% { transform: translateY(0px)   rotate(0deg); }
+  50%      { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes sparkle {
+  0%,100% { opacity: 0.15; transform: scale(0.8) rotate(0deg);   }
+  50%      { opacity: 1;    transform: scale(1.2) rotate(180deg); }
+}
