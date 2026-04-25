@@ -95,7 +95,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.25 }}
                 className="font-display text-xl italic text-gold/70 mb-8"
               >
-                Trader. Creator. Entrepreneur.
+                Trader. Customer Expert Representative. Entrepreneur.
               </motion.p>
 
               <motion.p

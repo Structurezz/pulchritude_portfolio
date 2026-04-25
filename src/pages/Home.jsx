@@ -152,7 +152,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="font-display text-xl font-light italic text-gold/80 mb-4 tracking-wide"
               >
-                Trader. Creator. Entrepreneur.
+                Trader. Customer Expert Representative, Entrepreneur.
               </motion.p>
 
               {/* Intro */}
@@ -225,7 +225,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="font-display text-3xl font-light italic text-gold/80 mb-8 tracking-wide"
               >
-                Trader. Creator. Entrepreneur.
+                Trader. Customer Expert Representative, Entrepreneur.
               </motion.p>
 
               <motion.p
