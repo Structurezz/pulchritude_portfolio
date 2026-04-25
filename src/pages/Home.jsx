@@ -81,129 +81,212 @@ export default function Home() {
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20">
         {/* Soft organic background */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Main blush glow */}
           <div className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full bg-rose/[0.07] blur-[100px]" />
-          {/* Gold warmth bottom-left */}
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gold/[0.05] blur-[80px]" />
-          {/* Small blush bloom top-left */}
-          <div className="absolute top-0 left-1/3 w-[200px] h-[200px] rounded-full bg-blush/[0.04] blur-[60px]" />
+          <div className="absolute top-0 left-1/3 w-[200px] h-[200px] rounded-full bg-rose/[0.04] blur-[60px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full py-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-          {/* Label */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-4 mb-10"
-          >
-            <div className="w-14 h-px bg-gradient-to-r from-rose to-transparent" />
-            <span className="font-mono text-xs tracking-widest uppercase text-rose">
-              Lagos, Nigeria
-            </span>
-            <div className="w-2 h-2 rounded-full bg-rose animate-pulse" />
-            <span className="font-mono text-xs tracking-widest uppercase text-muted">
-              Available for Opportunities
-            </span>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-5 md:px-12 w-full py-12 md:py-20 relative z-10">
 
-          {/* Name */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-6"
-          >
-            {/* Script name above */}
-            <span className="block font-script text-4xl sm:text-5xl md:text-6xl text-rose/60 leading-none mb-2">
-              Okorie
-            </span>
-            <h1 className="font-display font-light leading-[1.0]">
-              <span className="block text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] text-gradient-rose">
-                Angela
-              </span>
-              <span className="block text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] text-off-white">
-                Chiamaka
-              </span>
-            </h1>
-          </motion.div>
+          {/* ── MOBILE LAYOUT ── */}
+          <div className="flex flex-col lg:hidden">
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-display text-xl md:text-2xl lg:text-3xl font-light italic text-gold/80 mb-8 tracking-wide"
-          >
-            Trader. Creator. Entrepreneur.
-          </motion.p>
-
-          {/* Intro */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.42 }}
-            className="font-body text-base md:text-lg text-muted leading-relaxed max-w-2xl mb-12"
-          >
-            A multi-talented Nigerian professional based in Lagos — navigating global financial markets,
-            crafting soulful music, serving culinary artistry, delivering exceptional client experiences,
-            and building businesses that last.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.54 }}
-            className="flex flex-wrap gap-4"
-          >
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-3 px-8 py-3.5 bg-rose text-bg font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose-light hover:shadow-[0_0_30px_rgba(212,132,154,0.4)]"
+            {/* Mobile portrait — top, full-width card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative mx-auto mb-8 w-full max-w-sm"
             >
-              Discover More <ArrowRight size={14} />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-3 px-8 py-3.5 border border-rose/40 text-rose font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose hover:text-bg hover:border-rose"
-            >
-              Work With Me
-            </Link>
-          </motion.div>
-          </div>
-
-          {/* Hero portrait */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.3 }}
-            className="hidden lg:flex justify-center items-end relative"
-          >
-            {/* Soft glow behind image */}
-            <div className="absolute inset-0 bg-rose/[0.08] rounded-full blur-3xl scale-75" />
-            <div className="relative z-10">
-              <img
-                src={heroImg}
-                alt="Okorie Angela Chiamaka"
-                className="w-[420px] h-[540px] object-cover object-top rounded-3xl shadow-[0_30px_80px_rgba(212,132,154,0.2)]"
-              />
-              {/* Decorative ring */}
-              <div className="absolute -inset-2 rounded-3xl border border-rose/20 pointer-events-none" />
+              {/* Glow */}
+              <div className="absolute -inset-4 rounded-[2rem] bg-rose/[0.12] blur-2xl pointer-events-none" />
+              {/* Image card */}
+              <div className="relative rounded-[2rem] overflow-hidden border border-rose/20 shadow-[0_20px_60px_rgba(212,132,154,0.25)]">
+                <img
+                  src={heroImg}
+                  alt="Okorie Angela Chiamaka"
+                  className="w-full h-[380px] object-cover object-top"
+                />
+                {/* Gradient overlay at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/10 to-transparent" />
+                {/* Floating name over image */}
+                <div className="absolute bottom-0 left-0 right-0 px-6 pb-6">
+                  <span className="block font-script text-3xl text-rose/80 leading-none mb-1">Okorie</span>
+                  <h1 className="font-display font-light leading-[0.95]">
+                    <span className="block text-5xl text-gradient-rose">Angela</span>
+                    <span className="block text-5xl text-off-white">Chiamaka</span>
+                  </h1>
+                </div>
+              </div>
               {/* Floating badge */}
               <motion.div
-                animate={{ y: [0, -8, 0] }}
+                animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-5 -left-8 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl"
+                className="absolute -bottom-4 right-4 bg-card border border-border rounded-2xl px-4 py-2.5 shadow-xl z-10"
               >
-                <p className="font-script text-xl text-gradient-rose leading-none">Lagos, Nigeria</p>
-                <p className="font-mono text-[10px] text-muted tracking-widest uppercase mt-0.5">Available Now</p>
+                <p className="font-script text-base text-gradient-rose leading-none">Lagos, Nigeria</p>
+                <p className="font-mono text-[9px] text-muted tracking-widest uppercase mt-0.5">Available Now</p>
+              </motion.div>
+            </motion.div>
+
+            {/* Mobile text content */}
+            <div className="mt-6">
+              {/* Available label */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex items-center gap-3 mb-5"
+              >
+                <div className="w-8 h-px bg-gradient-to-r from-rose to-transparent" />
+                <div className="w-2 h-2 rounded-full bg-rose animate-pulse" />
+                <span className="font-mono text-[10px] tracking-widest uppercase text-muted">
+                  Available for Opportunities
+                </span>
+              </motion.div>
+
+              {/* Subtitle */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="font-display text-xl font-light italic text-gold/80 mb-4 tracking-wide"
+              >
+                Trader. Creator. Entrepreneur.
+              </motion.p>
+
+              {/* Intro */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="font-body text-sm text-muted leading-relaxed mb-8"
+              >
+                A multi-talented Nigerian professional based in Lagos — navigating global financial markets,
+                crafting soulful music, serving culinary artistry, and building businesses that last.
+              </motion.p>
+
+              {/* CTAs — full width on mobile */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="flex flex-col gap-3"
+              >
+                <Link
+                  to="/about"
+                  className="flex items-center justify-center gap-3 px-8 py-4 bg-rose text-bg font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose-light"
+                >
+                  Discover More <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="flex items-center justify-center gap-3 px-8 py-4 border border-rose/40 text-rose font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose hover:text-bg hover:border-rose"
+                >
+                  Work With Me
+                </Link>
               </motion.div>
             </div>
-          </motion.div>
-
           </div>
+
+          {/* ── DESKTOP LAYOUT (unchanged) ── */}
+          <div className="hidden lg:grid grid-cols-2 gap-12 items-center">
+            <div>
+              {/* Label */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-4 mb-10"
+              >
+                <div className="w-14 h-px bg-gradient-to-r from-rose to-transparent" />
+                <span className="font-mono text-xs tracking-widest uppercase text-rose">Lagos, Nigeria</span>
+                <div className="w-2 h-2 rounded-full bg-rose animate-pulse" />
+                <span className="font-mono text-xs tracking-widest uppercase text-muted">Available for Opportunities</span>
+              </motion.div>
+
+              {/* Name */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="mb-6"
+              >
+                <span className="block font-script text-6xl text-rose/60 leading-none mb-2">Okorie</span>
+                <h1 className="font-display font-light leading-[1.0]">
+                  <span className="block text-[7rem] text-gradient-rose">Angela</span>
+                  <span className="block text-[7rem] text-off-white">Chiamaka</span>
+                </h1>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="font-display text-3xl font-light italic text-gold/80 mb-8 tracking-wide"
+              >
+                Trader. Creator. Entrepreneur.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.42 }}
+                className="font-body text-lg text-muted leading-relaxed max-w-2xl mb-12"
+              >
+                A multi-talented Nigerian professional based in Lagos — navigating global financial markets,
+                crafting soulful music, serving culinary artistry, delivering exceptional client experiences,
+                and building businesses that last.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.54 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-3 px-8 py-3.5 bg-rose text-bg font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose-light hover:shadow-[0_0_30px_rgba(212,132,154,0.4)]"
+                >
+                  Discover More <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-3 px-8 py-3.5 border border-rose/40 text-rose font-body text-sm tracking-widest uppercase rounded-full transition-all duration-300 hover:bg-rose hover:text-bg hover:border-rose"
+                >
+                  Work With Me
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Desktop portrait */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.3 }}
+              className="flex justify-center items-end relative"
+            >
+              <div className="absolute inset-0 bg-rose/[0.08] rounded-full blur-3xl scale-75" />
+              <div className="relative z-10">
+                <img
+                  src={heroImg}
+                  alt="Okorie Angela Chiamaka"
+                  className="w-[420px] h-[540px] object-cover object-top rounded-3xl shadow-[0_30px_80px_rgba(212,132,154,0.2)]"
+                />
+                <div className="absolute -inset-2 rounded-3xl border border-rose/20 pointer-events-none" />
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -bottom-5 -left-8 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl"
+                >
+                  <p className="font-script text-xl text-gradient-rose leading-none">Lagos, Nigeria</p>
+                  <p className="font-mono text-[10px] text-muted tracking-widest uppercase mt-0.5">Available Now</p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+
         </div>
 
         {/* Bottom fade */}
