@@ -16,6 +16,7 @@ const navLinks = [
   { to: '/culinary', label: 'Culinary' },
   { to: '/hair', label: 'Hair' },
   { to: '/business', label: 'Business' },
+  { to: '/games', label: 'Games' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]

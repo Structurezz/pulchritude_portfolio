@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TrendingUp, Shield, BarChart2, Award } from 'lucide-react'
 import HeroSection from '../components/HeroSection'
@@ -5,6 +6,7 @@ import SectionLabel from '../components/SectionLabel'
 import StatCard from '../components/StatCard'
 import TimelineItem from '../components/TimelineItem'
 import SkillTag from '../components/SkillTag'
+import TradingViewWidget from '../components/TradingViewWidget'
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -225,6 +227,70 @@ export default function Trading() {
           </div>
         </div>
       </section>
+      {/* LIVE CHART */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
+        <SectionLabel>Live Markets</SectionLabel>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="font-display text-4xl md:text-5xl font-light text-off-white mb-4"
+        >
+          Live Chart
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="font-body text-muted mb-6"
+        >
+          Real-time market data powered by TradingView. Switch symbols directly on the chart.
+        </motion.p>
+
+        {/* Symbol quick-select */}
+        <SymbolSelector />
+      </section>
     </motion.div>
+  )
+}
+
+const SYMBOLS = [
+  { label: 'EUR/USD', value: 'FX:EURUSD' },
+  { label: 'GBP/USD', value: 'FX:GBPUSD' },
+  { label: 'XAU/USD', value: 'TVC:GOLD' },
+  { label: 'USD/JPY', value: 'FX:USDJPY' },
+  { label: 'BTC/USD', value: 'BITSTAMP:BTCUSD' },
+]
+
+function SymbolSelector() {
+  const [active, setActive] = useState('FX:EURUSD')
+  return (
+    <>
+      <div className="flex flex-wrap gap-2 mb-5">
+        {SYMBOLS.map(s => (
+          <button
+            key={s.value}
+            onClick={() => setActive(s.value)}
+            className={`font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-200 ${
+              active === s.value
+                ? 'bg-gold text-bg border-gold'
+                : 'border-border text-muted hover:border-gold/40 hover:text-gold'
+            }`}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
+      <motion.div
+        key={active}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <TradingViewWidget symbol={active} height={520} />
+      </motion.div>
+    </>
   )
 }

@@ -14,6 +14,7 @@ import Hair from './pages/Hair'
 import Business from './pages/Business'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Games from './pages/Games'
 import NotFound from './pages/NotFound'
 
 function AnimatedRoutes() {
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
         <Route path="/hair"            element={<Hair />}            />
         <Route path="/business"        element={<Business />}        />
         <Route path="/about"           element={<About />}           />
+        <Route path="/games"           element={<Games />}           />
         <Route path="/contact"         element={<Contact />}         />
         <Route path="*"                element={<NotFound />}        />
       </Routes>

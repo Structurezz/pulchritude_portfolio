@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   TrendingUp, Headphones, ChefHat, Scissors, Briefcase, HeadphonesIcon,
-  ArrowRight, ArrowUpRight, MapPin, Mail, Phone, ChevronDown,
+  ArrowRight, ArrowUpRight, MapPin, Mail, Phone, ChevronDown, Gamepad2,
 } from 'lucide-react'
 import PortfolioCard from '../components/PortfolioCard'
 import SectionLabel from '../components/SectionLabel'
@@ -72,6 +72,13 @@ const portfolioCards = [
     title: 'Business',
     description: 'Brand builder and entrepreneur leveraging cross-industry expertise into cohesive business value.',
     accent: '#C9A84C',
+  },
+  {
+    to: '/games',
+    icon: Gamepad2,
+    title: 'Games',
+    description: 'Play three original mini-games — memory match, trivia quiz, and a reaction speed test.',
+    accent: '#A78BFA',
   },
 ]
 
