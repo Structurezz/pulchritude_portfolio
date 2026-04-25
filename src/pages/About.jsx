@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Mail, Phone, Heart, Star } from 'lucide-react'
 import SectionLabel from '../components/SectionLabel'
 import redDressImg from '../assets/WhatsApp Image 2026-04-25 at 14.17.00.jpeg'
+import circleImg from '../assets/image6.jpeg'
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -108,6 +109,46 @@ export default function About() {
                 with expertise spanning global financial markets, music artistry, culinary arts, beauty,
                 customer experience, and entrepreneurship.
               </motion.p>
+
+              {/* Circle portrait — mobile only */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className="flex justify-center mt-10 lg:hidden"
+              >
+                <div className="relative">
+                  {/* Outer glow */}
+                  <div className="absolute -inset-4 rounded-full bg-rose/[0.12] blur-2xl pointer-events-none" />
+                  {/* Gradient border ring */}
+                  <div
+                    className="absolute -inset-1.5 rounded-full"
+                    style={{
+                      background: 'linear-gradient(135deg, #D4849A, #C9A84C, #D4849A)',
+                      padding: '3px',
+                      WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                      WebkitMaskComposite: 'xor',
+                      maskComposite: 'exclude',
+                    }}
+                  />
+                  {/* Circle image */}
+                  <div className="w-52 h-52 rounded-full overflow-hidden relative z-10 border-4 border-bg">
+                    <img
+                      src={circleImg}
+                      alt="Okorie Angela Chiamaka"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  {/* Floating badge */}
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-card border border-border rounded-full px-4 py-1.5 whitespace-nowrap shadow-lg z-20"
+                  >
+                    <span className="font-script text-base text-gradient-rose">Lagos, Nigeria</span>
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
 
             {/* Photo */}
