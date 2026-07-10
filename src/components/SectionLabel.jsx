@@ -7,13 +7,12 @@ export default function SectionLabel({ children, className = '' }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`flex items-center gap-4 mb-4 ${className}`}
+      className={`inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-rose/30 bg-rose/[0.06] ${className}`}
     >
-      <div className="w-10 h-px bg-gradient-to-r from-rose to-transparent" />
-      <span className="font-mono text-xs tracking-widest uppercase text-rose">
+      <span className="w-1.5 h-1.5 rounded-full bg-rose animate-pulse" />
+      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-rose">
         {children}
       </span>
-      <div className="w-1 h-1 rounded-full bg-rose/50" />
     </motion.div>
   )
 }

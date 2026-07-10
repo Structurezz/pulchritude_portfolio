@@ -20,10 +20,10 @@ export default {
         muted:       'rgb(var(--color-muted) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'serif'],
-        script:  ['"Great Vibes"', 'cursive'],
-        mono:    ['"DM Mono"', 'monospace'],
-        body:    ['Outfit', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Inter"', 'sans-serif'],
+        script:  ['"Caveat"', 'cursive'],
+        mono:    ['"JetBrains Mono"', 'monospace'],
+        body:    ['"Inter"', 'Outfit', 'sans-serif'],
       },
       backgroundImage: {
         'rose-gradient': 'linear-gradient(135deg, rgb(var(--color-rose)) 0%, rgb(var(--color-rose-light)) 50%, rgb(var(--color-rose)) 100%)',

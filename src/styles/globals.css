@@ -7,49 +7,52 @@
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ─────────────────────────────────────────────────
-   THEME VARIABLES
+   THEME VARIABLES — Modern Indigo × Emerald palette
    Light = :root  |  Dark = .dark
 ───────────────────────────────────────────────── */
 @layer base {
   :root {
-    /* Light theme — clean white base, rose accents only */
-    --color-bg:         252 252 252;   /* #FCFCFC – near white */
-    --color-surface:    246 246 248;   /* #F6F6F8 – very light neutral */
+    /* Light theme — clean modern neutral base */
+    --color-bg:         250 250 252;   /* #FAFAFC */
+    --color-surface:    243 244 246;   /* #F3F4F6 */
     --color-card:       255 255 255;   /* #FFFFFF */
-    --color-border:     226 220 228;   /* #E2DCE4 – soft neutral */
-    --color-rose:       201 107 133;   /* #C96B85 */
-    --color-rose-light: 224 143 170;   /* #E08FAA */
-    --color-rose-dark:  168  78 107;   /* #A84E6B */
-    --color-blush:      245 198 208;   /* #F5C6D0 */
-    --color-gold:       184 146  42;   /* #B8922A */
-    --color-gold-light: 212 168  64;   /* #D4A840 */
-    --color-text:        28  22  34;   /* #1C1622 – dark text on light bg */
-    --color-muted:      120 110 130;   /* #786E82 */
+    --color-border:     226 230 240;   /* #E2E6F0 */
+    /* Primary — indigo/violet */
+    --color-rose:        99 102 241;   /* #6366F1 indigo-500 */
+    --color-rose-light: 129 140 248;   /* #818CF8 indigo-400 */
+    --color-rose-dark:   79  70 229;   /* #4F46E5 indigo-600 */
+    --color-blush:      199 210 254;   /* #C7D2FE indigo-200 */
+    /* Accent — emerald */
+    --color-gold:        16 185 129;   /* #10B981 emerald-500 */
+    --color-gold-light:  52 211 153;   /* #34D399 emerald-400 */
+    --color-text:        15  23  42;   /* #0F172A slate-900 */
+    --color-muted:      100 116 139;   /* #64748B slate-500 */
 
-    /* Legacy vars for inline styles */
-    --bg:     #FCFCFC;
-    --rose:   #C96B85;
-    --gold:   #B8922A;
+    --bg:   #FAFAFC;
+    --rose: #6366F1;
+    --gold: #10B981;
   }
 
   .dark {
-    /* Dark theme */
-    --color-bg:          15  10  20;   /* #0F0A14 */
-    --color-surface:     22  14  28;   /* #160E1C */
-    --color-card:        29  18  38;   /* #1D1226 */
-    --color-border:      50  23  64;   /* #321740 */
-    --color-rose:       212 132 154;   /* #D4849A */
-    --color-rose-light: 232 168 190;   /* #E8A8BE */
-    --color-rose-dark:  184 102 138;   /* #B8668A */
-    --color-blush:      242 196 206;   /* #F2C4CE */
-    --color-gold:       201 168  76;   /* #C9A84C */
-    --color-gold-light: 232 201 106;   /* #E8C96A */
-    --color-text:       251 240 243;   /* #FBF0F3 */
-    --color-muted:      150 127 165;   /* #967FA5 */
+    /* Dark theme — deep midnight indigo */
+    --color-bg:          10  14  26;   /* #0A0E1A */
+    --color-surface:     17  21  36;   /* #111524 */
+    --color-card:        23  27  46;   /* #171B2E */
+    --color-border:      35  40  66;   /* #232842 */
+    /* Primary — indigo/violet */
+    --color-rose:       129 140 248;   /* #818CF8 indigo-400 */
+    --color-rose-light: 165 180 252;   /* #A5B4FC indigo-300 */
+    --color-rose-dark:   99 102 241;   /* #6366F1 indigo-500 */
+    --color-blush:      199 210 254;   /* #C7D2FE */
+    /* Accent — emerald */
+    --color-gold:        52 211 153;   /* #34D399 emerald-400 */
+    --color-gold-light: 110 231 183;   /* #6EE7B7 emerald-300 */
+    --color-text:       241 245 249;   /* #F1F5F9 slate-100 */
+    --color-muted:      148 163 184;   /* #94A3B8 slate-400 */
 
-    --bg:   #0F0A14;
-    --rose: #D4849A;
-    --gold: #C9A84C;
+    --bg:   #0A0E1A;
+    --rose: #818CF8;
+    --gold: #34D399;
   }
 
   * {
@@ -65,7 +68,7 @@
   body {
     background-color: rgb(var(--color-bg));
     color: rgb(var(--color-text));
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', 'Outfit', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -78,7 +81,7 @@
   }
 
   /* ── Scrollbar ── */
-  ::-webkit-scrollbar        { width: 5px; }
+  ::-webkit-scrollbar        { width: 6px; }
   ::-webkit-scrollbar-track  { background: rgb(var(--color-bg)); }
   ::-webkit-scrollbar-thumb  {
     background: linear-gradient(180deg, rgb(var(--color-rose)), rgb(var(--color-gold)));
@@ -95,30 +98,35 @@
   .container-max   { @apply max-w-7xl mx-auto; }
 
   .card-base {
-    @apply bg-card border border-border rounded-2xl p-6 transition-all duration-300;
+    @apply bg-card border border-border rounded-3xl p-6 transition-all duration-300;
   }
   .card-hover {
-    @apply hover:border-rose/40 hover:shadow-[0_0_40px_rgba(212,132,154,0.12)];
+    @apply hover:border-rose/40 hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.35)];
   }
 
   .btn-rose {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-rose text-white font-body font-semibold
-           text-sm tracking-widest uppercase rounded-full transition-all duration-300
-           hover:bg-rose-light hover:shadow-[0_0_24px_rgba(212,132,154,0.45)];
+    @apply inline-flex items-center gap-2 px-8 py-3.5 bg-rose text-white font-body font-semibold
+           text-sm tracking-wider rounded-full transition-all duration-300
+           hover:bg-rose-light hover:shadow-[0_10px_40px_-10px_rgba(99,102,241,0.6)] hover:-translate-y-0.5;
   }
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-8 py-3 border border-rose/60 text-rose font-body
-           text-sm tracking-widest uppercase rounded-full transition-all duration-300
-           hover:bg-rose hover:text-white;
+    @apply inline-flex items-center gap-2 px-8 py-3.5 border border-rose/60 text-rose font-body
+           text-sm tracking-wider rounded-full transition-all duration-300
+           hover:bg-rose hover:text-white hover:-translate-y-0.5;
   }
   .btn-gold {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-gold text-white font-body font-semibold
-           text-sm tracking-widest uppercase rounded-full transition-all duration-300
-           hover:bg-gold-light hover:shadow-[0_0_20px_rgba(201,168,76,0.4)];
+    @apply inline-flex items-center gap-2 px-8 py-3.5 bg-gold text-white font-body font-semibold
+           text-sm tracking-wider rounded-full transition-all duration-300
+           hover:bg-gold-light hover:shadow-[0_10px_40px_-10px_rgba(16,185,129,0.55)] hover:-translate-y-0.5;
   }
 
-  .label-mono { @apply font-mono text-xs tracking-widest uppercase text-rose; }
+  .label-mono { @apply font-mono text-[11px] tracking-[0.25em] uppercase text-rose; }
   .rose-rule  { @apply w-16 h-px bg-rose mb-6; }
+
+  /* Modern chip / pill */
+  .chip {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[11px] font-mono tracking-widest uppercase;
+  }
 }
 
 /* ─────────────────────────────────────────────────
@@ -130,9 +138,9 @@
     background: linear-gradient(
       135deg,
       rgb(var(--color-rose))        0%,
-      rgb(var(--color-rose-light))  40%,
-      rgb(var(--color-blush))       65%,
-      rgb(var(--color-rose))       100%
+      rgb(var(--color-rose-light))  45%,
+      rgb(var(--color-gold-light))  80%,
+      rgb(var(--color-gold))       100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -151,40 +159,70 @@
     background-clip: text;
   }
 
-  .glow-rose { box-shadow: 0 0 40px rgba(212, 132, 154, 0.18); }
-  .glow-gold { box-shadow: 0 0 40px rgba(201, 168,  76, 0.15); }
+  .text-gradient-modern {
+    background: linear-gradient(
+      120deg,
+      rgb(var(--color-rose))        0%,
+      rgb(var(--color-gold))       100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-rose { box-shadow: 0 20px 60px -15px rgba(99, 102, 241, 0.45); }
+  .glow-gold { box-shadow: 0 20px 60px -15px rgba(16, 185, 129, 0.35); }
+
+  /* Glass surface */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Modern grid background */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* Soft aurora blob */
+  .aurora-blob {
+    background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.35), transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(16,185,129,0.28), transparent 55%);
+    filter: blur(80px);
+  }
 }
 
 /* ─────────────────────────────────────────────────
-   LIGHT MODE EXCLUSIVE — cool features
+   LIGHT MODE EXCLUSIVE
 ───────────────────────────────────────────────── */
-
-/* Subtle neutral background for light mode — no pink */
 html:not(.dark) body {
-  background: #FCFCFC;
+  background: #FAFAFC;
 }
 
-/* Glass cards in light mode */
 html:not(.dark) .card-base {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(16px) saturate(1.6);
-  -webkit-backdrop-filter: blur(16px) saturate(1.6);
-  border: 1px solid rgba(201, 107, 133, 0.18);
-  box-shadow: 0 4px 24px rgba(201, 107, 133, 0.08), 0 1px 4px rgba(0,0,0,0.04);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.06), 0 1px 3px rgba(15,23,42,0.04);
 }
 
 html:not(.dark) .card-hover:hover {
-  box-shadow: 0 12px 40px rgba(201, 107, 133, 0.18), 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 20px 60px -20px rgba(99, 102, 241, 0.25), 0 2px 8px rgba(15,23,42,0.05);
 }
 
-/* Frosted glass surface panels */
 html:not(.dark) .bg-surface {
-  background: rgba(242, 234, 240, 0.8) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(243, 244, 246, 0.9) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-/* Sparkle decorations — light mode only */
+/* Ambient blobs for light mode */
 html:not(.dark) body::before,
 html:not(.dark) body::after {
   content: '';
@@ -192,32 +230,30 @@ html:not(.dark) body::after {
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
-  opacity: 0.35;
+  opacity: 0.4;
 }
 html:not(.dark) body::before {
-  width: 600px; height: 600px;
-  top: -10%;    right: -10%;
-  background: radial-gradient(circle, rgba(201,107,133,0.15) 0%, transparent 70%);
-  animation: float 10s ease-in-out infinite;
+  width: 700px; height: 700px;
+  top: -15%; right: -15%;
+  background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+  animation: float 12s ease-in-out infinite;
 }
 html:not(.dark) body::after {
-  width: 400px; height: 400px;
-  bottom: -5%;  left: -5%;
-  background: radial-gradient(circle, rgba(184,146,42,0.12) 0%, transparent 70%);
-  animation: float 13s ease-in-out infinite reverse;
+  width: 500px; height: 500px;
+  bottom: -10%; left: -10%;
+  background: radial-gradient(circle, rgba(16,185,129,0.14) 0%, transparent 70%);
+  animation: float 15s ease-in-out infinite reverse;
 }
 
-/* Floating sparkle elements (injected via React) */
 .sparkle-dot {
   position: fixed;
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,107,133,0.7) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(99,102,241,0.7) 0%, transparent 70%);
   animation: sparkle 3s ease-in-out infinite;
 }
 
-/* Shimmer border on section labels in light mode */
 html:not(.dark) .label-mono {
   background: linear-gradient(90deg, rgb(var(--color-rose)), rgb(var(--color-gold)), rgb(var(--color-rose)));
   background-size: 200% 100%;
@@ -232,34 +268,9 @@ html:not(.dark) .label-mono {
   100% { background-position: 200% 0%; }
 }
 
-/* Gradient border on featured cards in light mode */
-html:not(.dark) .portfolio-card-featured {
-  position: relative;
-}
-html:not(.dark) .portfolio-card-featured::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgb(var(--color-rose)), rgb(var(--color-gold)), rgb(var(--color-rose)));
-  background-size: 200% 200%;
-  animation: gradient-border 4s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-@keyframes gradient-border {
-  0%,100% { background-position: 0%   50%; }
-  50%      { background-position: 100% 50%; }
-}
-
 /* ─────────────────────────────────────────────────
-   DARK MODE EXCLUSIVE — enhanced features
+   DARK MODE EXCLUSIVE — atmospheric backdrop
 ───────────────────────────────────────────────── */
-
-/* Constellation star dots on dark body */
 html.dark body::before {
   content: '';
   position: fixed;
@@ -267,33 +278,41 @@ html.dark body::before {
   pointer-events: none;
   z-index: 0;
   background-image:
-    radial-gradient(1px 1px at 20%  15%, rgba(212,132,154,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80%  25%, rgba(201,168,76,0.4)  0%, transparent 100%),
-    radial-gradient(1px 1px at 45%  60%, rgba(212,132,154,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 65%  80%, rgba(201,168,76,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 10%  70%, rgba(212,132,154,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90%  55%, rgba(212,132,154,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 35%  90%, rgba(201,168,76,0.3)  0%, transparent 100%),
-    radial-gradient(1px 1px at 75%   5%, rgba(212,132,154,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55%  40%, rgba(201,168,76,0.25) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25%  48%, rgba(212,132,154,0.2) 0%, transparent 100%);
-  opacity: 0.8;
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(99,102,241,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(16,185,129,0.10) 0%, transparent 60%),
+    radial-gradient(1px 1px at 20%  15%, rgba(165,180,252,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80%  25%, rgba(110,231,183,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45%  60%, rgba(165,180,252,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65%  80%, rgba(110,231,183,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10%  70%, rgba(165,180,252,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90%  55%, rgba(165,180,252,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35%  90%, rgba(110,231,183,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75%   5%, rgba(165,180,252,0.5) 0%, transparent 100%);
+  opacity: 0.85;
 }
 
-/* Neon glow on active nav links in dark */
 html.dark .dark-nav-active {
-  text-shadow: 0 0 12px rgba(212, 132, 154, 0.8);
+  text-shadow: 0 0 14px rgba(129, 140, 248, 0.75);
 }
 
 /* ─────────────────────────────────────────────────
-   SHARED FLOAT KEYFRAME
+   SHARED KEYFRAMES
 ───────────────────────────────────────────────── */
 @keyframes float {
   0%,100% { transform: translateY(0px)   rotate(0deg); }
-  50%      { transform: translateY(-15px) rotate(3deg); }
+  50%      { transform: translateY(-18px) rotate(3deg); }
 }
 
 @keyframes sparkle {
   0%,100% { opacity: 0.15; transform: scale(0.8) rotate(0deg);   }
   50%      { opacity: 1;    transform: scale(1.2) rotate(180deg); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.4);  opacity: 0; }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
 }
