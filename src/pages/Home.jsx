@@ -260,7 +260,7 @@ export default function Home() {
                   <p className="font-body text-xs text-black/70 mt-0.5">Lead Generation Specialist</p>
                 </div>
                 <Link
-                  to="/lead-generation"
+                  to="/lead-generation#role-call-guru-current"
                   className="flex-shrink-0 w-11 h-11 rounded-2xl bg-black flex items-center justify-center active:scale-95 transition-transform"
                 >
                   <ArrowUpRight size={18} className="text-white" />

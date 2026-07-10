@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion'
 import { Building2 } from 'lucide-react'
 
-export default function TimelineItem({ role, company, period, description, index = 0 }) {
+export default function TimelineItem({ role, company, period, description, index = 0, id }) {
   return (
     <motion.div
+      id={id}
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative pl-10 pb-10 last:pb-0 group"
+      className="relative pl-10 pb-10 last:pb-0 group scroll-mt-24"
     >
       {/* Vertical gradient line */}
       <div className="absolute left-[7px] top-4 bottom-0 w-px bg-gradient-to-b from-rose/60 via-border to-transparent group-last:from-rose/60 group-last:via-border/40" />

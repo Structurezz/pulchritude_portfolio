@@ -15,6 +15,7 @@ const pageTransition = {
 
 const timeline = [
   {
+    id: 'role-call-guru-current',
     role: 'Lead Generation Specialist',
     company: 'The Call Guru',
     period: 'Jan 2024 — Present',
