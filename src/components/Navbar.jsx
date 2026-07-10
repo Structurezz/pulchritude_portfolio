@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Menu, X,
+  Menu, X, Search, Bell,
   Home, Headphones, Target, User, Mail, LayoutGrid,
 } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
@@ -55,18 +55,19 @@ export default function Navbar() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-rose/40 to-transparent" />
         )}
 
-        <div className="max-w-7xl mx-auto px-5 md:px-12 flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 flex items-center justify-between h-16 md:h-20">
+          {/* Logo — mobile app-style */}
+          <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-rose to-gold flex items-center justify-center shadow-lg shadow-rose/20">
-                <span className="font-display text-white font-bold text-sm">AO</span>
+              <div className="w-11 h-11 md:w-9 md:h-9 rounded-2xl md:rounded-xl bg-gradient-to-br from-rose to-gold flex items-center justify-center shadow-lg shadow-rose/30">
+                <span className="font-display text-white font-bold text-base md:text-sm">AO</span>
               </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-rose to-gold blur-md opacity-40 -z-10" />
+              <div className="absolute inset-0 rounded-2xl md:rounded-xl bg-gradient-to-br from-rose to-gold blur-md opacity-40 -z-10" />
             </div>
-            <div className="hidden sm:block">
-              <div className="font-display text-sm font-semibold text-off-white leading-none">Angela Okorie</div>
-              <div className="font-mono text-[9px] tracking-[0.2em] text-muted uppercase mt-1">CS · Lead Gen</div>
+            <div className="block">
+              <div className="font-mono text-[9px] tracking-[0.2em] text-muted uppercase md:hidden">Portfolio</div>
+              <div className="font-display text-sm font-semibold text-off-white leading-tight md:leading-none">Angela Okorie</div>
+              <div className="font-mono text-[9px] tracking-[0.2em] text-muted uppercase mt-1 hidden md:block">CS · Lead Gen</div>
             </div>
           </Link>
 
@@ -91,21 +92,33 @@ export default function Navbar() {
           </div>
 
           {/* Right controls */}
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Mobile-only quick actions */}
+            <button
+              className="lg:hidden w-10 h-10 rounded-2xl bg-card border border-border flex items-center justify-center text-off-white active:scale-95 transition-transform"
+              aria-label="Search"
+            >
+              <Search size={17} />
+            </button>
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-rose to-rose-dark text-white font-body text-xs font-semibold tracking-wide rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-rose/40 hover:-translate-y-0.5"
+              className="lg:hidden w-10 h-10 rounded-2xl bg-card border border-border flex items-center justify-center text-off-white active:scale-95 transition-transform relative"
+              aria-label="Notifications"
             >
-              Hire Me
+              <Bell size={17} />
+              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400" />
             </Link>
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden text-off-white hover:text-rose transition-colors p-1"
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+
+            {/* Desktop-only controls */}
+            <div className="hidden lg:flex items-center gap-3">
+              <ThemeToggle />
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-rose to-rose-dark text-white font-body text-xs font-semibold tracking-wide rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-rose/40 hover:-translate-y-0.5"
+              >
+                Hire Me
+              </Link>
+            </div>
           </div>
         </div>
       </motion.nav>
