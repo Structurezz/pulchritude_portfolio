@@ -228,43 +228,43 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-rose/25 border border-white/10"
+              className="relative"
             >
-              <img
-                src={heroImg}
-                alt="Angela Okorie"
-                className="w-full h-[420px] object-cover object-top"
-              />
-              {/* Bottom overlay */}
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+              {/* Photo — clean, no card frame */}
+              <div className="relative">
+                <img
+                  src={heroImg}
+                  alt="Angela Okorie"
+                  className="w-full h-[420px] object-cover object-top rounded-[2rem]"
+                  style={{ mixBlendMode: 'normal' }}
+                />
 
-              {/* Location tag top-left */}
-              <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/15">
-                <MapPin size={11} className="text-white" />
-                <span className="font-mono text-[10px] tracking-widest uppercase text-white">Lagos, NG</span>
-              </div>
-
-              {/* Featured stats top-right */}
-              <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md">
-                <Star size={11} className="text-rose" fill="currentColor" />
-                <span className="font-mono text-[10px] font-bold tracking-wide uppercase text-off-white">Top Performer</span>
-              </div>
-
-              {/* Bottom content */}
-              <div className="absolute inset-x-4 bottom-4">
-                <p className="font-mono text-[10px] tracking-widest uppercase text-white/70 mb-2">Currently at</p>
-                <div className="flex items-end justify-between gap-3">
-                  <div>
-                    <p className="font-display text-2xl font-bold text-white leading-tight">The Call Guru</p>
-                    <p className="font-body text-xs text-white/70 mt-1">Lead Generation Specialist</p>
-                  </div>
-                  <Link
-                    to="/lead-generation"
-                    className="flex-shrink-0 w-11 h-11 rounded-2xl bg-white flex items-center justify-center active:scale-95 transition-transform"
-                  >
-                    <ArrowUpRight size={18} className="text-off-white" />
-                  </Link>
+                {/* Location tag top-left — white bg, black text */}
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white shadow-md">
+                  <MapPin size={11} className="text-black" />
+                  <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-black">Zapopan, Mexico</span>
                 </div>
+
+                {/* Featured stats top-right — white bg, black text */}
+                <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white shadow-md">
+                  <Star size={11} className="text-gold" fill="currentColor" />
+                  <span className="font-mono text-[10px] font-bold tracking-wide uppercase text-black">Top Performer</span>
+                </div>
+              </div>
+
+              {/* Info block — white bg with black text, below the picture */}
+              <div className="mt-3 bg-white rounded-2xl px-4 py-3 shadow-md flex items-end justify-between gap-3">
+                <div>
+                  <p className="font-mono text-[10px] tracking-widest uppercase text-black/60 mb-1">Currently at</p>
+                  <p className="font-display text-lg font-bold text-black leading-tight">The Call Guru</p>
+                  <p className="font-body text-xs text-black/70 mt-0.5">Lead Generation Specialist</p>
+                </div>
+                <Link
+                  to="/lead-generation"
+                  className="flex-shrink-0 w-11 h-11 rounded-2xl bg-black flex items-center justify-center active:scale-95 transition-transform"
+                >
+                  <ArrowUpRight size={18} className="text-white" />
+                </Link>
               </div>
             </motion.div>
           </div>
